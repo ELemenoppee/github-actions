@@ -1,0 +1,41 @@
+name: First Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+  workflow_dispatch:
+
+# This environment variable can be use in all the jobs in this workflow
+env:
+  REPOSITORY_NAME: "github-actions"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  # environment variable that can be use inside this job
+    env:
+      MY_NAME: "ELemenoppee"
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Add a step to checkout the repository
+        uses: actions/checkout@v4
+
+      # Running a simple shell command in the workflow
+      - name: Run a simple shell script
+        run: echo "Hello!"
+
+      # Adding a step that installs dependencies
+      - name: Install a telnet client
+        run: |
+          sudo apt update
+          sudo apt install telnet
+          telnet --version
+
+      # Use environment variables inside your workflow
+      - name: with Environment Variables
+        run: echo "Hello! My name is $MY_NAME and the github name is $REPOSITORY_NAME"
+
