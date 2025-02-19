@@ -3,7 +3,8 @@ name: First Workflow
 on:
   push:
     branches:
-      - main
+      # - main
+      - develop      
   pull_request:
 
   workflow_dispatch:
