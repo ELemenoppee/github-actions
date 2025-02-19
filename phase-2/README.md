@@ -230,12 +230,12 @@ This project helped me deepen my understanding of GitHub Actions and how to auto
 Next Steps
 Now that I’ve implemented these improvements, I plan to explore:
 
-🔹 Using GitHub Actions to build and test applications automatically.
++ Set up a job to lint code using a linter (e.g., ESLint for JavaScript, flake8 for Python).
 
-🔹 Implementing secrets management to securely handle credentials.
++ Run unit tests in your workflow (e.g., pytest, jest).
 
-🔹 Running matrix builds to test across multiple environments.
++ Cache dependencies to speed up workflows (actions/cache).
 
-🔹 Automating deployment processes for continuous delivery (CD).
++ Store artifacts from a build process.
 
 This has been an exciting step forward in my DevOps journey, and I’m eager to explore more advanced automation techniques. If you’re also working with GitHub Actions, let’s connect and share insights! 🚀
