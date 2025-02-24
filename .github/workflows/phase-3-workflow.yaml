@@ -20,24 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js (for JavaScript)
-        if: matrix.language == 'javascript'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install dependencies (JavaScript)
-        if: matrix.language == 'javascript'
-        run: |
-          cd phase-3/my-javascript-project
-          npm ci
-
-      - name: Run ESLint (JavaScript)
-        if: matrix.language == 'javascript'
-        run: |
-          cd phase-3/my-javascript-project
-          npx eslint .
-
       - name: Set up Python
         if: matrix.language == 'python'
         uses: actions/setup-python@v4
@@ -49,7 +31,11 @@ jobs:
         run: |
           cd phase-3/my-python-project
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt flake8
+
+      - name: Check Installed Python Packages
+        if: matrix.language == 'python'
+        run: python -m pip list
 
       - name: Run flake8 (Python)
         if: matrix.language == 'python'
