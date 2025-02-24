@@ -20,7 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # JavaScript Linting
       - name: Set up Node.js (for JavaScript)
         if: matrix.language == 'javascript'
         uses: actions/setup-node@v4
@@ -30,16 +29,15 @@ jobs:
       - name: Install dependencies (JavaScript)
         if: matrix.language == 'javascript'
         run: |
-          cd my-javascript-project  # Navigate to JavaScript project
-          npm ci  # Install npm dependencies
+          cd phase-3/my-javascript-project
+          npm ci
 
       - name: Run ESLint (JavaScript)
         if: matrix.language == 'javascript'
         run: |
-          cd my-javascript-project
-          npx eslint .  # Run ESLint to check for code style issues
+          cd phase-3/my-javascript-project
+          npx eslint .
 
-      # Python Linting
       - name: Set up Python
         if: matrix.language == 'python'
         uses: actions/setup-python@v4
@@ -49,15 +47,15 @@ jobs:
       - name: Install dependencies (Python)
         if: matrix.language == 'python'
         run: |
-          cd my-python-project  # Navigate to Python project
-          python -m pip install --upgrade pip  # Upgrade pip
-          pip install -r requirements.txt  # Install project dependencies
+          cd phase-3/my-python-project
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run flake8 (Python)
         if: matrix.language == 'python'
         run: |
-          cd my-python-project
-          flake8 .  # Run flake8 for Python linting
+          cd phase-3/my-python-project
+          flake8 .
 
   test:
     runs-on: ubuntu-latest
@@ -80,23 +78,22 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('my-javascript-project/package-lock.json') }}  
+          key: ${{ runner.os }}-node-${{ hashFiles('phase-3/my-javascript-project/package-lock.json') }}  
           restore-keys: |
             ${{ runner.os }}-node-
 
       - name: Install dependencies (JavaScript)
         if: matrix.language == 'javascript'
         run: |
-          cd my-javascript-project
+          cd phase-3/my-javascript-project
           npm ci
 
       - name: Run Jest tests (JavaScript)
         if: matrix.language == 'javascript'
         run: |
-          cd my-javascript-project
-          npm test  # Run Jest unit tests
+          cd phase-3/my-javascript-project
+          npm test
 
-      # Python Testing
       - name: Set up Python
         if: matrix.language == 'python'
         uses: actions/setup-python@v4
@@ -108,18 +105,18 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('my-python-project/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('phase-3/my-python-project/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: Install dependencies (Python)
         if: matrix.language == 'python'
         run: |
-          cd my-python-project
+          cd phase-3/my-python-project
           pip install -r requirements.txt
 
       - name: Run pytest (Python)
         if: matrix.language == 'python'
         run: |
-          cd my-python-project
-          pytest  # Run pytest unit tests
+          cd phase-3/my-python-project
+          pytest
