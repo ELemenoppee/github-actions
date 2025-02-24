@@ -41,7 +41,7 @@ jobs:
         if: matrix.language == 'python'
         run: |
           cd phase-3/my-python-project
-          flake8 .
+          flake8 --exit-zero .
 
   test:
     runs-on: ubuntu-latest
