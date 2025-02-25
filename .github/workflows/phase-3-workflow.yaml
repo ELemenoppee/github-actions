@@ -72,7 +72,7 @@ jobs:
         if: matrix.language == 'javascript'
         run: |
           cd phase-3/my-javascript-project
-          npm ci
+          npm install
 
       - name: Run Jest tests (JavaScript)
         if: matrix.language == 'javascript'
